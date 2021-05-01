@@ -16,10 +16,10 @@ class HowToActivity : AppCompatActivity() {
 
         rvHowToUse.layoutManager = LinearLayoutManager(this)
 
-        listHowToUse.add(HowToUse("Jadi gini gan", "Ini deksripsi"))
-        listHowToUse.add(HowToUse("Jadi gini gan", "Ini deksripsi bambang", R.drawable.ic_header_home))
-        listHowToUse.add(HowToUse("Jadi gini gan", "Ini deksripsi bambang", R.drawable.ic_header_home))
-        listHowToUse.add(HowToUse("Jadi gini gan", "Ini deksripsi bambang"))
+        listHowToUse.add(HowToUse("Jadi gini", "Ini deksripsi"))
+        listHowToUse.add(HowToUse("Jadi gini", "Ini deksripsi", R.drawable.ic_header_home))
+        listHowToUse.add(HowToUse("Jadi gini", "Ini deksripsi", R.drawable.ic_header_home))
+        listHowToUse.add(HowToUse("Jadi gini", "Ini deksripsi"))
 
         rvHowToUse.adapter = HowToUseAdapter(listHowToUse)
 

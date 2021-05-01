@@ -15,6 +15,9 @@
     <string name="tukar_sampah">Tukar Sampah</string>
     <string name="tukar_coin">Tukar Coin</string>
     <string name="name">Nama Pengguna</string>
+    <string name="nomor_telepon">Nomor Telepon</string>
+    <string name="verifikasi_nomor_telepon">Verifikasi Nomor Telepon</string>
+    <string name="verifikasi">Verifikasi</string>
     <string-array name="rt">
         <item>RT</item>
         <item>01</item>

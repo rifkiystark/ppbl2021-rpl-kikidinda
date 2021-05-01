@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="name">Nama Pengguna</string>
+    <string name="nomor_telepon">Nomor Telepon</string>
+    <string name="verifikasi_nomor_telepon">Verifikasi Nomor Telepon</string>
+    <string name="verifikasi">Verifikasi</string>
 </resources>

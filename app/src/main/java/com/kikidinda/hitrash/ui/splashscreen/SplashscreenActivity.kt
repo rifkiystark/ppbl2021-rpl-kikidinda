@@ -4,7 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
+import com.kikidinda.hitrash.Auth
 import com.kikidinda.hitrash.R
+import com.kikidinda.hitrash.ui.MainActivity
 import com.kikidinda.hitrash.ui.login.LoginActivity
 
 class SplashscreenActivity : AppCompatActivity() {
@@ -13,9 +15,15 @@ class SplashscreenActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splashscreen)
 
         Handler(mainLooper).postDelayed({
-            startActivity(
-                Intent(this, LoginActivity::class.java)
-            )
+            if(Auth.isLogin == null)
+                startActivity(
+                    Intent(this, LoginActivity::class.java)
+                )
+            else {
+                startActivity(
+                    Intent(this, MainActivity::class.java)
+                )
+            }
         }, 2000)
     }
 }

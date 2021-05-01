@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "904296314211",
+    "project_id": "hitrash-ddd0c",
+    "storage_bucket": "hitrash-ddd0c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:904296314211:android:7286b0a50b1d9744940f56",
+        "android_client_info": {
+          "package_name": "com.kikidinda.hitrash"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "904296314211-oal4u6s57j81amgjafop78f42t1r7rnb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kikidinda.hitrash",
+            "certificate_hash": "67ba15b9538a26ce4b8fdb7a344f31a90b477302"
+          }
+        },
+        {
+          "client_id": "904296314211-ge5mgi8s05o1n7kkqe5ilci6cmkkv05d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBo72wSnUo4zTb1FKeE-fx2Q4r53tTJXeo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "904296314211-ge5mgi8s05o1n7kkqe5ilci6cmkkv05d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
