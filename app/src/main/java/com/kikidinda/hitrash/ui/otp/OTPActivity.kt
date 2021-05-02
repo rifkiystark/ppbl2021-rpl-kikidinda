@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.kikidinda.hitrash.R
 import com.kikidinda.hitrash.model.User
+import com.kikidinda.hitrash.repository.local.LocalStorage
 import com.kikidinda.hitrash.ui.MainActivity
 import com.kikidinda.hitrash.utils.Alert
 import kotlinx.android.synthetic.main.activity_o_t_p.*
@@ -36,7 +37,6 @@ class OTPActivity : AppCompatActivity() {
         btnVerify.setOnClickListener {
             viewModel.verifiyOTPCode(pvOTP.text.toString(), user)
         }
-
     }
 
     private fun setObserver() {
@@ -55,6 +55,9 @@ class OTPActivity : AppCompatActivity() {
             Handler(mainLooper).postDelayed({
                 alert = Alert.hide(alert)
                 startActivity(Intent(this, MainActivity::class.java))
+                LocalStorage.setLogin(this, true)
+                LocalStorage.setUser(this, user)
+                finishAffinity()
             }, 1500)
 
         })

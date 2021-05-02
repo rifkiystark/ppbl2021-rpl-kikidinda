@@ -88,7 +88,7 @@
                     android:textSize="12sp" />
 
                 <TextView
-                    android:id="@+id/tvUsername"
+                    android:id="@+id/tvEmail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
@@ -99,11 +99,15 @@
 
     </com.google.android.material.card.MaterialCardView>
 
-    <TextView
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/btnLogout"
+        android:background="@android:color/transparent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/holo_red_dark"
         android:text="Keluar"
+        android:layout_gravity="center"
+        android:padding="8dp"
         android:gravity="center"
         android:fontFamily="@font/bold"
         android:textSize="16sp"/>

@@ -34,6 +34,21 @@ object FirestoreUser : FirestoreIntance() {
             }
     }
 
+    fun getUserById(id: String, onResult: (String?, User?) -> Unit) {
+        db.collection(CONST.FIRESTORE.USER).document(id).get()
+            .addOnSuccessListener {
+                if (it == null) {
+                    onResult("User Belum Terdaftar", null)
+                } else {
+                    val user = it.toObject(User::class.java)
+                    onResult("User Sudah Terdaftar", user)
+                }
+            }
+            .addOnFailureListener {
+                onResult(it.localizedMessage, null)
+            }
+    }
+
     fun registerNewUser(id: String, user: User, onResult: (String?, Boolean) -> Unit) {
         db.collection(CONST.FIRESTORE.USER).document(id).set(user)
             .addOnSuccessListener {

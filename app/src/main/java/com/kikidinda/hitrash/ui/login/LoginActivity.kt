@@ -28,7 +28,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         btnMasuk.setOnClickListener {
-            viewModel.login(etEmail.text.toString(), etPassword.text.toString())
+            viewModel.login(etEmail.text.toString(), etPassword.text.toString(), this)
         }
 
         setObserver()
@@ -49,6 +49,7 @@ class LoginActivity : AppCompatActivity() {
             startActivity(
                 Intent(this, MainActivity::class.java)
             )
+            finishAffinity()
         })
     }
 }

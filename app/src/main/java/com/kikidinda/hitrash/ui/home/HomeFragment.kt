@@ -6,15 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kikidinda.hitrash.R
 import com.kikidinda.hitrash.adapter.HistoryAdapter
 import com.kikidinda.hitrash.ui.history.HistoryActivity
 import com.kikidinda.hitrash.ui.howto.HowToActivity
+import com.kikidinda.hitrash.ui.profile.ProfileViewModel
+import com.kikidinda.hitrash.utils.Helper
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
 
+    val profileViewModel : ProfileViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -45,5 +50,11 @@ class HomeFragment : Fragment() {
                 Intent(requireContext(), HistoryActivity::class.java)
             )
         }
+
+        profileViewModel.getProfile(requireContext())
+
+        profileViewModel.profileBroadcaster().observe(viewLifecycleOwner, Observer {
+            tvGreeting.text = Helper.getGreetings() + ", " + Helper.getSimpleName(it.name)
+        })
     }
 }
