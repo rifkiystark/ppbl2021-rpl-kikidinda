@@ -22,18 +22,23 @@ class OTPViewModel : ViewModel() {
         value = false
     }
     val message = MutableLiveData<String>()
-    val successRegister = MutableLiveData<String>()
+    val successRegister = MutableLiveData<User>()
 
     lateinit var verificationId: String
 
     fun loadingBroadcaster(): LiveData<Boolean> = loading
     fun messageBroadcaster(): LiveData<String> = message
-    fun successRegisterBroadcaster(): LiveData<String> = successRegister
+    fun successRegisterBroadcaster(): LiveData<User> = successRegister
 
     fun requestCode(
-        phoneNumber: String,
+        number: String,
         activity: Activity
     ) {
+        var phoneNumber = number
+//        if(phoneNumber[0].equals("0")){
+//            phoneNumber = phoneNumber.removeRange(0,0)
+//        }
+//        Log.d(TAG, "requestCode: " + phoneNumber)
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
             "+62$phoneNumber",
             60,
@@ -79,7 +84,8 @@ class OTPViewModel : ViewModel() {
                             val id = it.result?.user?.uid!!
                             FirestoreUser.registerNewUser(id, user) { message, status ->
                                 if (status) {
-                                    successRegister.value = message
+                                    user.id = id
+                                    successRegister.value = user
                                 } else {
                                     this.message.value = "Registrasi gagal, coba lagi nanti"
                                 }

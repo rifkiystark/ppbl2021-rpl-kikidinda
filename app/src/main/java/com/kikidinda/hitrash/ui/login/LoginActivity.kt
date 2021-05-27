@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.kikidinda.hitrash.R
 import com.kikidinda.hitrash.ui.MainActivity
+import com.kikidinda.hitrash.ui.MainAdminActivity
 import com.kikidinda.hitrash.ui.register.RegisterActivity
 import com.kikidinda.hitrash.utils.Alert
 import kotlinx.android.synthetic.main.activity_login.*
@@ -46,9 +47,17 @@ class LoginActivity : AppCompatActivity() {
 
         viewModel.successBroadcaster().observe(this, Observer {
             alert = Alert.hide(alert)
-            startActivity(
-                Intent(this, MainActivity::class.java)
-            )
+            if(it.admin){
+                startActivity(
+                    Intent(this, MainAdminActivity::class.java)
+                )
+                finish()
+            } else {
+                startActivity(
+                    Intent(this, MainActivity::class.java)
+                )
+                finish()
+            }
             finishAffinity()
         })
     }

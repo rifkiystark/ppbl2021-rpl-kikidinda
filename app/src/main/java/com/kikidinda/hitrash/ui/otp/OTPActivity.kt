@@ -51,12 +51,12 @@ class OTPActivity : AppCompatActivity() {
         })
 
         viewModel.successRegisterBroadcaster().observe(this, Observer {
-            alert = Alert.success(alert, it)
+            alert = Alert.success(alert, "Berhasil")
             Handler(mainLooper).postDelayed({
                 alert = Alert.hide(alert)
                 startActivity(Intent(this, MainActivity::class.java))
                 LocalStorage.setLogin(this, true)
-                LocalStorage.setUser(this, user)
+                LocalStorage.setUser(this, it)
                 finishAffinity()
             }, 1500)
 

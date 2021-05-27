@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import com.kikidinda.hitrash.Auth
 import com.kikidinda.hitrash.R
 import com.kikidinda.hitrash.repository.local.LocalStorage
 import com.kikidinda.hitrash.ui.login.LoginActivity
@@ -37,8 +36,8 @@ class ProfileFragment : Fragment() {
         })
 
         btnLogout.setOnClickListener {
-            LocalStorage.signOut(requireContext())
-            startActivity(Intent(requireContext(), LoginActivity::class.java))
+            LocalStorage.signOut(requireActivity())
+            startActivity(Intent(requireActivity(), LoginActivity::class.java))
             requireActivity().finishAffinity()
         }
     }

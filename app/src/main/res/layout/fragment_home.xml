@@ -43,7 +43,7 @@
                     android:layout_marginLeft="32dp"
                     android:layout_marginTop="24dp"
                     android:fontFamily="@font/bold"
-                    android:text="@string/selamat_pagi_joko"
+                    android:text="-"
                     android:textColor="@android:color/white"
                     android:textSize="20sp" />
 
@@ -83,6 +83,7 @@
                             android:textSize="12sp" />
 
                         <TextView
+                            android:id="@+id/tvPoin"
                             android:layout_width="wrap_content"
                             android:layout_height="88dp"
                             android:layout_below="@id/yourCoin"
@@ -90,7 +91,7 @@
                             android:layout_gravity="center"
                             android:layout_marginTop="-22dp"
                             android:fontFamily="@font/bold"
-                            android:text="100"
+                            android:text="-"
                             android:textColor="@color/blackColor"
                             android:textSize="73sp" />
                     </RelativeLayout>

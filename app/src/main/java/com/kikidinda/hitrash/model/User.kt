@@ -7,9 +7,11 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class User(
     @DocumentId
-    val id : String? = "",
+    var id : String? = "",
     val name : String = "",
     val email : String = "",
     val password : String = "",
-    val phoneNumber : String = ""
+    val phoneNumber : String = "",
+    val poin : Int = 0,
+    val admin: Boolean = false
 ) : Parcelable

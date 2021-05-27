@@ -1,5 +1,6 @@
 package com.kikidinda.hitrash.repository.firestore
 
+import com.google.firebase.firestore.FieldValue
 import com.kikidinda.hitrash.model.User
 import com.kikidinda.hitrash.utils.CONST
 
@@ -16,6 +17,21 @@ object FirestoreUser : FirestoreIntance() {
             }
             .addOnFailureListener {
                 onResult(it.localizedMessage, null)
+            }
+    }
+
+    fun getUser( onResult: (List<User>)->Unit) {
+        db.collection(CONST.FIRESTORE.USER).whereEqualTo("admin", false).get()
+            .addOnSuccessListener {
+                if (it.isEmpty) {
+                    onResult(listOf())
+                } else {
+                    val users = it.toObjects(User::class.java)
+                    onResult(users)
+                }
+            }
+            .addOnFailureListener {
+                onResult(listOf())
             }
     }
 
@@ -57,5 +73,10 @@ object FirestoreUser : FirestoreIntance() {
             .addOnFailureListener {
                 onResult(it.localizedMessage, false)
             }
+    }
+
+    fun addPoin(id: String, poin: Int) {
+        db.collection(CONST.FIRESTORE.USER).document(id)
+            .update("poin", FieldValue.increment(poin.toLong()))
     }
 }

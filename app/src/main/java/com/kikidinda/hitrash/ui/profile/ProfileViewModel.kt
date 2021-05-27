@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.kikidinda.hitrash.model.User
+import com.kikidinda.hitrash.repository.firestore.FirestoreUser
 import com.kikidinda.hitrash.repository.local.LocalStorage
 
 class ProfileViewModel : ViewModel() {
@@ -13,6 +14,8 @@ class ProfileViewModel : ViewModel() {
     fun profileBroadcaster() : LiveData<User> = profile
 
     fun getProfile(context: Context) {
-        profile.value = LocalStorage.getUser(context)
+        FirestoreUser.getUserById(LocalStorage.getUser(context).id!!){ message, user ->
+            profile.value = user
+        }
     }
 }

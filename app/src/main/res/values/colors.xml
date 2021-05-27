@@ -12,4 +12,5 @@
     <color name="blackColor">#323232</color>
     <color name="secondaryColor">#3BBDCF</color>
     <color name="dividerColor">#e5e5e5</color>
+    <color name="grayColor">#6a6a6a</color>
 </resources>

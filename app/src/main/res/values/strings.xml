@@ -43,4 +43,6 @@
     <string name="nomor_telepon">Nomor Telepon</string>
     <string name="verifikasi_nomor_telepon">Verifikasi Nomor Telepon</string>
     <string name="verifikasi">Verifikasi</string>
+    <string name="masukkan_berat_sampah">Masukkan berat sampah</string>
+    <string name="tambahkan">Tambahkan</string>
 </resources>
