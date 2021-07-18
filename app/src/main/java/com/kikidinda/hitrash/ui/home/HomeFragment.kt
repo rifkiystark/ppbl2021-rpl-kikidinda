@@ -55,7 +55,7 @@ class HomeFragment : Fragment() {
 
         profileViewModel.profileBroadcaster().observe(viewLifecycleOwner, Observer {
             tvGreeting.text = Helper.getGreetings() + ", " + Helper.getSimpleName(it.name)
-            tvPoin.text = it.poin.toString()
+            tvCoin.text = it.poin.toString()
         })
     }
 }

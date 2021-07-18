@@ -8,6 +8,7 @@ import com.kikidinda.hitrash.R
 import com.kikidinda.hitrash.repository.local.LocalStorage
 import com.kikidinda.hitrash.ui.MainActivity
 import com.kikidinda.hitrash.ui.MainAdminActivity
+import com.kikidinda.hitrash.ui.MainMerchantActivity
 import com.kikidinda.hitrash.ui.login.LoginActivity
 import com.kikidinda.hitrash.ui.onboarding.OnboardingActivity
 
@@ -32,17 +33,26 @@ class SplashscreenActivity : AppCompatActivity() {
             }
 
             else {
-                val admin = LocalStorage.getUser(this).admin
-                if(admin){
-                    startActivity(
-                        Intent(this, MainAdminActivity::class.java)
-                    )
-                    finish()
-                } else {
-                    startActivity(
-                        Intent(this, MainActivity::class.java)
-                    )
-                    finish()
+                val user = LocalStorage.getUser(this)
+                when {
+                    user.admin -> {
+                        startActivity(
+                            Intent(this, MainAdminActivity::class.java)
+                        )
+                        finish()
+                    }
+                    user.warung -> {
+                        startActivity(
+                            Intent(this, MainMerchantActivity::class.java)
+                        )
+                        finish()
+                    }
+                    else -> {
+                        startActivity(
+                            Intent(this, MainActivity::class.java)
+                        )
+                        finish()
+                    }
                 }
 
             }

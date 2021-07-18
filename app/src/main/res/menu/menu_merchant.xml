@@ -7,9 +7,9 @@
         android:icon="@drawable/ic_round_home_24"
         android:title="@string/beranda" />
     <item
-        android:id="@+id/menuHome"
-        android:icon="@drawable/ic_round_home_24"
-        android:title="@string/beranda" />
+        android:id="@+id/menuPembayaran"
+        android:icon="@drawable/ic_baseline_qr_code_24"
+        android:title="@string/pembayaran" />
    
     <item
         android:id="@+id/menuProfile"

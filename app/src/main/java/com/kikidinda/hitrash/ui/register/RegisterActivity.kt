@@ -62,7 +62,9 @@ class RegisterActivity : AppCompatActivity() {
                 email = etEmail.text.toString(),
                 password = etPassword.text.toString(),
                 name = etName.text.toString(),
-                phoneNumber = etPhoneNumber.text.toString()
+                phoneNumber = etPhoneNumber.text.toString(),
+                rt = etRt.text.toString(),
+                rw = etRw.text.toString()
             )
             viewModel.register(
                 etPhoneNumber.text.toString(),

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="bgEditText">#f8f8f8</color>
+    <color name="bgEditText">#fff</color>
     <color name="primaryGreen">#047C75</color>
     <color name="blackColor">#323232</color>
     <color name="secondaryColor">#3BBDCF</color>

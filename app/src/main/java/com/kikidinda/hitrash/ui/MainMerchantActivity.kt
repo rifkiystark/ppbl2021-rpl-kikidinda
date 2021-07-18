@@ -1,26 +1,25 @@
 package com.kikidinda.hitrash.ui
 
-import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.kikidinda.hitrash.R
-import com.kikidinda.hitrash.ui.dashboard.DashboardAdmin
-import com.kikidinda.hitrash.ui.homeadmin.HomeAdmin
+import com.kikidinda.hitrash.ui.home.HomeFragment
+import com.kikidinda.hitrash.ui.merchant.MerchantFragment
 import com.kikidinda.hitrash.ui.profile.ProfileFragment
+import com.kikidinda.hitrash.ui.qrcode.QRCodeFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainAdminActivity : AppCompatActivity() {
-
+class MainMerchantActivity : AppCompatActivity() {
     private val fragments = listOf(
-        DashboardAdmin(),
-        HomeAdmin(),
+        HomeFragment(),
+        QRCodeFragment(),
         ProfileFragment()
     )
     lateinit var activeFragment : Fragment
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main_admin)
+        setContentView(R.layout.activity_main_merchant)
 
         supportFragmentManager.beginTransaction()
             .add(R.id.wrapperContent, fragments[0])
@@ -35,7 +34,7 @@ class MainAdminActivity : AppCompatActivity() {
                 R.id.menuDashboard -> {
                     showFragment(0)
                 }
-                R.id.menuHome -> {
+                R.id.menuPembayaran -> {
                     showFragment(1)
                 }
                 R.id.menuProfile -> {

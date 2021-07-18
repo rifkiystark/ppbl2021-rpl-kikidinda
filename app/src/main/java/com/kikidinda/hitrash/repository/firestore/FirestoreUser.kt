@@ -69,6 +69,7 @@ object FirestoreUser : FirestoreIntance() {
         db.collection(CONST.FIRESTORE.USER).document(id).set(user)
             .addOnSuccessListener {
                 onResult("Register User Berhasil", true)
+                FirestoreAppInfo.addUser()
             }
             .addOnFailureListener {
                 onResult(it.localizedMessage, false)

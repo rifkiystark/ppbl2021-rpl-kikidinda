@@ -18,6 +18,11 @@
     <string name="nomor_telepon">Nomor Telepon</string>
     <string name="verifikasi_nomor_telepon">Verifikasi Nomor Telepon</string>
     <string name="verifikasi">Verifikasi</string>
+    <string name="log_in">Log In</string>
+    <string name="register">Register</string>
+    <string name="rw">RW</string>
+    <string name="rt">RT</string>
+    <string name="pembayaran">Pembayaran</string>
     <string-array name="rt">
         <item>RT</item>
         <item>01</item>

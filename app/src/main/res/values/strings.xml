@@ -45,4 +45,9 @@
     <string name="verifikasi">Verifikasi</string>
     <string name="masukkan_berat_sampah">Masukkan berat sampah</string>
     <string name="tambahkan">Tambahkan</string>
+    <string name="log_in">Log In</string>
+    <string name="register">Register</string>
+    <string name="rw">RW</string>
+    <string name="rt">RT</string>
+    <string name="pembayaran">Pembayaran</string>
 </resources>
