@@ -38,18 +38,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        app:cardCornerRadius="16dp"
-        app:contentPadding="1dp"
         app:cardBackgroundColor="@color/dividerColor"
+        app:cardCornerRadius="16dp"
         app:cardElevation="0dp"
-        app:cardUseCompatPadding="true">
+        app:cardUseCompatPadding="true"
+        app:contentPadding="1dp">
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardCornerRadius="16dp"
-            app:contentPadding="16dp"
-            app:cardElevation="0dp">
+            app:cardElevation="0dp"
+            app:contentPadding="16dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -70,9 +70,9 @@
                     android:id="@+id/tvName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="Ananda Rifkiy Hasan"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:text="Ananda Rifkiy Hasan" />
+                    android:textStyle="bold" />
 
                 <View
                     android:layout_width="match_parent"
@@ -91,24 +91,72 @@
                     android:id="@+id/tvEmail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="ananda.rifkiy32@gmail.com"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:text="ananda.rifkiy32@gmail.com" />
+                    android:textStyle="bold" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
     </com.google.android.material.card.MaterialCardView>
 
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="-16dp"
+        android:layout_marginEnd="16dp"
+        app:cardBackgroundColor="@color/dividerColor"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp"
+        app:cardUseCompatPadding="true"
+        app:contentPadding="1dp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/btnUpdateProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            app:contentPadding="16dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginBottom="-4dp"
+                    android:fontFamily="@font/bold"
+                    android:text="Edit Profil Warung"
+                    android:textColor="@color/blackColor"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/ic_baseline_edit_24"
+                    app:tint="@color/primaryGreen" />
+            </RelativeLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+    </com.google.android.material.card.MaterialCardView>
+
     <Button
         android:id="@+id/btnLogout"
-        android:background="@android:color/transparent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/holo_red_dark"
-        android:text="Keluar"
         android:layout_gravity="center"
-        android:padding="8dp"
-        android:gravity="center"
+        android:background="@android:color/transparent"
         android:fontFamily="@font/bold"
-        android:textSize="16sp"/>
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="Keluar"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="16sp" />
 </LinearLayout>

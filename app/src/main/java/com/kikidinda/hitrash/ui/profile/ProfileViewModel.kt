@@ -5,17 +5,23 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.kikidinda.hitrash.model.User
-import com.kikidinda.hitrash.repository.firestore.FirestoreUser
 import com.kikidinda.hitrash.repository.local.LocalStorage
 
 class ProfileViewModel : ViewModel() {
     val profile = MutableLiveData<User>()
 
-    fun profileBroadcaster() : LiveData<User> = profile
+    val isWarung = MutableLiveData<Boolean>().apply {
+        value = false
+    }
+
+    fun profileBroadcaster(): LiveData<User> = profile
 
     fun getProfile(context: Context) {
-        FirestoreUser.getUserById(LocalStorage.getUser(context).id!!){ message, user ->
-            profile.value = user
+        val user = LocalStorage.getUser(context)
+        profile.value = user
+
+        if(user.warung){
+            isWarung.value = true
         }
     }
 }

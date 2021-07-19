@@ -1,7 +1,9 @@
 package com.kikidinda.hitrash.repository.firestore
 
 import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.SetOptions
 import com.kikidinda.hitrash.model.User
+import com.kikidinda.hitrash.model.Warung
 import com.kikidinda.hitrash.utils.CONST
 
 object FirestoreUser : FirestoreIntance() {
@@ -20,7 +22,7 @@ object FirestoreUser : FirestoreIntance() {
             }
     }
 
-    fun getUser( onResult: (List<User>)->Unit) {
+    fun getUser(onResult: (List<User>) -> Unit) {
         db.collection(CONST.FIRESTORE.USER).whereEqualTo("admin", false).get()
             .addOnSuccessListener {
                 if (it.isEmpty) {
@@ -79,5 +81,31 @@ object FirestoreUser : FirestoreIntance() {
     fun addPoin(id: String, poin: Int) {
         db.collection(CONST.FIRESTORE.USER).document(id)
             .update("poin", FieldValue.increment(poin.toLong()))
+    }
+
+    fun updateMerchant(merchant: Warung, id: String, callback: (Boolean, Warung) -> Unit) {
+        db.collection(CONST.FIRESTORE.USER).document(id).collection(CONST.FIRESTORE.USER_MERCHANT)
+            .document(id).set(
+                merchant, SetOptions.merge()
+            ).addOnSuccessListener {
+                callback(true, merchant)
+            }
+            .addOnFailureListener {
+                callback(true, merchant)
+            }
+    }
+
+    fun getMerchant(id: String, callback: (Boolean, Warung?) -> Unit) {
+        db.collection(CONST.FIRESTORE.USER).document(id).collection(CONST.FIRESTORE.USER_MERCHANT)
+            .document(id).get().addOnSuccessListener {
+                val merchant = it.toObject(Warung::class.java)
+                if(merchant == null){
+                    callback(false, null)
+                } else {
+                    callback(true, merchant)
+                }
+            }.addOnFailureListener {
+                callback(false, null)
+            }
     }
 }

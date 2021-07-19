@@ -10,6 +10,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.kikidinda.hitrash.R
 import com.kikidinda.hitrash.repository.local.LocalStorage
+import com.kikidinda.hitrash.ui.editprofilemerchant.EditProfileMerchantActivity
 import com.kikidinda.hitrash.ui.login.LoginActivity
 import kotlinx.android.synthetic.main.fragment_profile.*
 
@@ -39,6 +40,10 @@ class ProfileFragment : Fragment() {
             LocalStorage.signOut(requireActivity())
             startActivity(Intent(requireActivity(), LoginActivity::class.java))
             requireActivity().finishAffinity()
+        }
+
+        btnUpdateProfile.setOnClickListener {
+            startActivity(Intent(requireContext(), EditProfileMerchantActivity::class.java))
         }
     }
 

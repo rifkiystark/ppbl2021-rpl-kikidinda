@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HiTrash">
-        <activity android:name=".ui.qrcode.QRCodeActivity"></activity>
+        <activity android:name=".ui.editprofilemerchant.EditProfileMerchantActivity"></activity>
+        <activity android:name=".ui.qrcode.QRCodeActivity" />
         <activity android:name=".ui.MainMerchantActivity" />
         <activity android:name=".ui.scanner.ScannerActivity" />
         <activity android:name=".ui.MainAdminActivity" />

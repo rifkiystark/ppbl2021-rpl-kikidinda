@@ -23,6 +23,11 @@
     <string name="rw">RW</string>
     <string name="rt">RT</string>
     <string name="pembayaran">Pembayaran</string>
+    <string name="edit_profile_warung">Edit Profile Warung</string>
+    <string name="nama_toko">Nama Toko</string>
+    <string name="jenis_toko">Jenis Toko</string>
+    <string name="contoh_barang_yang_dijual">Contoh Barang yang Dijual</string>
+    <string name="update_profile">Update Profile</string>
     <string-array name="rt">
         <item>RT</item>
         <item>01</item>

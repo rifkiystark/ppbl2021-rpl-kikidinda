@@ -5,7 +5,7 @@ import java.util.*
 object Helper {
     fun getSimpleName(name : String) : String {
         val splitedName = name.split(" ")
-        val simpleName = splitedName.minBy {  it.length }
+        val simpleName = splitedName.minByOrNull {  it.length }
         return simpleName?:""
     }
 
