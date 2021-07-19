@@ -55,4 +55,6 @@
     <string name="jenis_toko">Jenis Toko</string>
     <string name="contoh_barang_yang_dijual">Contoh Barang yang Dijual</string>
     <string name="update_profile">Update Profile</string>
+    <string name="setor_sampah">Setor Sampah</string>
+    <string name="daftar_pengguna">Daftar Pengguna</string>
 </resources>

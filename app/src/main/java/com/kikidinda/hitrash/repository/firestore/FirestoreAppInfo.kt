@@ -9,18 +9,14 @@ import com.kikidinda.hitrash.utils.CONST
 object FirestoreAppInfo : FirestoreIntance() {
     fun getAppInfo() : LiveData<AppInfo> {
         val appInfoLiveData = MutableLiveData<AppInfo>()
-        db.collection(CONST.FIRESTORE.APP_INFO).document(CONST.FIRESTORE.APP_INFO).get()
-            .addOnSuccessListener {
-                if (!it.exists()) {
-                    appInfoLiveData.postValue(AppInfo())
-                } else {
-                    val appinfo = it.toObject(AppInfo::class.java)
-                    appInfoLiveData.postValue(appinfo!!)
-                }
-            }
-            .addOnFailureListener {
+        db.collection(CONST.FIRESTORE.APP_INFO).document(CONST.FIRESTORE.APP_INFO).addSnapshotListener { value, error ->
+            if (!value?.exists()!!) {
                 appInfoLiveData.postValue(AppInfo())
+            } else {
+                val appinfo = value?.toObject(AppInfo::class.java)
+                appInfoLiveData.postValue(appinfo!!)
             }
+        }
 
         return appInfoLiveData
     }
@@ -29,6 +25,11 @@ object FirestoreAppInfo : FirestoreIntance() {
     fun addUser() {
         db.collection(CONST.FIRESTORE.APP_INFO).document(CONST.FIRESTORE.APP_INFO)
             .update("totalUser", FieldValue.increment(1.toLong()))
+    }
+
+    fun addWarung() {
+        db.collection(CONST.FIRESTORE.APP_INFO).document(CONST.FIRESTORE.APP_INFO)
+            .update("totalMerchant", FieldValue.increment(1.toLong()))
     }
 
 }

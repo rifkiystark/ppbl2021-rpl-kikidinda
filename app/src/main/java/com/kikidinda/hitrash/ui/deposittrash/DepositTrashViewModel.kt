@@ -1,4 +1,4 @@
-package com.kikidinda.hitrash.ui.homeadmin
+package com.kikidinda.hitrash.ui.deposittrash
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.kikidinda.hitrash.model.User
 import com.kikidinda.hitrash.repository.firestore.FirestoreUser
 
-class HomeAdminViewModel : ViewModel() {
+class DepositTrashViewModel : ViewModel() {
     val users = MutableLiveData<List<User>>()
 
     init {

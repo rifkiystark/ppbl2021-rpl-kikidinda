@@ -7,10 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kikidinda.hitrash.R
 import com.kikidinda.hitrash.adapter.HistoryAdapter
+import com.kikidinda.hitrash.model.Transaction
 import com.kikidinda.hitrash.ui.history.HistoryActivity
 import com.kikidinda.hitrash.ui.howto.HowToActivity
 import com.kikidinda.hitrash.ui.profile.ProfileViewModel
@@ -19,7 +21,10 @@ import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
 
-    val profileViewModel : ProfileViewModel by activityViewModels()
+    val viewModel : HomeViewModel by viewModels()
+    lateinit var adapter : HistoryAdapter
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,7 +37,8 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         rvHistory.layoutManager = LinearLayoutManager(requireContext())
-        rvHistory.adapter = HistoryAdapter()
+        adapter = HistoryAdapter()
+        rvHistory.adapter = adapter
 
         btnTukarSampah.setOnClickListener {
             requireContext().startActivity(
@@ -51,11 +57,13 @@ class HomeFragment : Fragment() {
             )
         }
 
-        profileViewModel.getProfile(requireContext())
-
-        profileViewModel.profileBroadcaster().observe(viewLifecycleOwner, Observer {
-            tvGreeting.text = Helper.getGreetings() + ", " + Helper.getSimpleName(it.name)
+        viewModel.profile(requireContext()).observe(viewLifecycleOwner, {
+            tvGreeting.text = "Halo, " + Helper.getSimpleName(it.name)
             tvCoin.text = it.poin.toString()
+        })
+
+        viewModel.transaction(requireContext()).observe(viewLifecycleOwner, {
+            adapter.updateTransactionData(it)
         })
     }
 }

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".ui.homeadmin.HomeAdmin">
+    tools:context=".ui.deposittrash.DepositTrashFragment">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:text="Admin"
+            android:text="@string/setor_sampah"
             android:layout_marginStart="32dp"
             android:layout_marginTop="18dp"
             android:layout_marginBottom="18dp"
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/bold"
             android:paddingTop="8dp"
-            android:text="@string/tambahkan"
+            android:text="@string/setor_sampah"
             app:backgroundTint="@color/primaryGreen"
             app:cornerRadius="24dp" />
     </LinearLayout>

@@ -40,10 +40,13 @@ class EditProfileMerchantViewModel : ViewModel() {
             if (status) {
                 if (merchant == null) {
                     merchant = Warung(img = url)
-                    merchantObservable.value = merchant
-                    FirestoreUser.updateMerchant(merchant!!, user.id!!) { status, merchant ->
 
-                    }
+                } else {
+                    merchant!!.img = url
+                }
+                merchantObservable.value = merchant
+                FirestoreUser.updateMerchant(merchant!!, user.id!!) { status, merchant ->
+
                 }
             }
 

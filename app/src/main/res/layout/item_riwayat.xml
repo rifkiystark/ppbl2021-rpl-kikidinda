@@ -16,19 +16,16 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tvMessage"
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:fontFamily="@font/medium"
                 android:text="Penukaran Sampah"
                 android:textColor="@color/blackColor" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:fontFamily="@font/regular"
-                android:text="Berat Sampah : 2kg" />
 
             <TextView
+                android:id="@+id/tvDate"
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:fontFamily="@font/regular"
@@ -36,6 +33,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/tvPoin"
             android:layout_width="wrap_content"
             android:layout_height="36dp"
             android:layout_alignParentEnd="true"

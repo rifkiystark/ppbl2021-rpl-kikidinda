@@ -1,7 +1,11 @@
 package com.kikidinda.hitrash.repository.firestore
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.SetOptions
+import com.kikidinda.hitrash.model.Transaction
 import com.kikidinda.hitrash.model.User
 import com.kikidinda.hitrash.model.Warung
 import com.kikidinda.hitrash.utils.CONST
@@ -52,19 +56,16 @@ object FirestoreUser : FirestoreIntance() {
             }
     }
 
-    fun getUserById(id: String, onResult: (String?, User?) -> Unit) {
-        db.collection(CONST.FIRESTORE.USER).document(id).get()
-            .addOnSuccessListener {
-                if (it == null) {
-                    onResult("User Belum Terdaftar", null)
-                } else {
-                    val user = it.toObject(User::class.java)
-                    onResult("User Sudah Terdaftar", user)
-                }
+    fun getUserById(id: String): LiveData<User> {
+        val userLiveData = MutableLiveData<User>()
+        db.collection(CONST.FIRESTORE.USER).document(id).addSnapshotListener { value, _ ->
+            if (value != null) {
+                if (value.exists())
+                    userLiveData.postValue(value.toObject(User::class.java))
             }
-            .addOnFailureListener {
-                onResult(it.localizedMessage, null)
-            }
+        }
+
+        return userLiveData
     }
 
     fun registerNewUser(id: String, user: User, onResult: (String?, Boolean) -> Unit) {
@@ -83,6 +84,13 @@ object FirestoreUser : FirestoreIntance() {
             .update("poin", FieldValue.increment(poin.toLong()))
     }
 
+    fun makeMerchant(id: String, callback: (Boolean) -> Unit) {
+        db.collection(CONST.FIRESTORE.USER).document(id).update("warung", true)
+            .addOnSuccessListener {
+                callback(true)
+            }
+    }
+
     fun updateMerchant(merchant: Warung, id: String, callback: (Boolean, Warung) -> Unit) {
         db.collection(CONST.FIRESTORE.USER).document(id).collection(CONST.FIRESTORE.USER_MERCHANT)
             .document(id).set(
@@ -99,7 +107,7 @@ object FirestoreUser : FirestoreIntance() {
         db.collection(CONST.FIRESTORE.USER).document(id).collection(CONST.FIRESTORE.USER_MERCHANT)
             .document(id).get().addOnSuccessListener {
                 val merchant = it.toObject(Warung::class.java)
-                if(merchant == null){
+                if (merchant == null) {
                     callback(false, null)
                 } else {
                     callback(true, merchant)
@@ -108,4 +116,41 @@ object FirestoreUser : FirestoreIntance() {
                 callback(false, null)
             }
     }
+
+    fun getMerchants(): LiveData<ArrayList<Warung>> {
+        val warungLiveData = MutableLiveData<ArrayList<Warung>>()
+        val warungs = arrayListOf<Warung>()
+        db.collection(CONST.FIRESTORE.USER).whereEqualTo("warung", true).get()
+            .addOnSuccessListener {
+                it.documents.forEach { doc ->
+                    doc.reference.collection(CONST.FIRESTORE.USER_MERCHANT).document(doc.id).get()
+                        .addOnSuccessListener { warungRes ->
+                            val warung = warungRes.toObject(Warung::class.java)
+                            if (warung != null) {
+                                warungs.add(warung)
+                                warungLiveData.postValue(warungs)
+                            }
+                        }
+                }
+            }.addOnFailureListener {
+
+            }
+
+        return warungLiveData
+    }
+
+    fun getTransactions(id: String): LiveData<List<Transaction>> {
+        val transactionsLiveData = MutableLiveData<List<Transaction>>()
+        db.collection(CONST.FIRESTORE.USER).document(id)
+            .collection(CONST.FIRESTORE.USER_TRANSACTIONS)
+            .orderBy("time", Query.Direction.DESCENDING)
+            .limit(5L)
+            .addSnapshotListener { value, _ ->
+                value?.toObjects(Transaction::class.java)
+                    ?.let { transactionsLiveData.postValue(it) }
+            }
+
+        return transactionsLiveData
+    }
+
 }

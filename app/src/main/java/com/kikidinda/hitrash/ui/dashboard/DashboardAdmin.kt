@@ -1,5 +1,6 @@
 package com.kikidinda.hitrash.ui.dashboard
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.kikidinda.hitrash.R
+import com.kikidinda.hitrash.ui.users.UsersActivity
 import kotlinx.android.synthetic.main.fragment_dashboard_admin.*
 
 class DashboardAdmin : Fragment() {
@@ -31,5 +33,13 @@ class DashboardAdmin : Fragment() {
             totalWarung.text = it.totalMerchant.toString()
             nilaiSampah.text = (it.totalSampah * 1000).toString()
         })
+
+        btnUsers.setOnClickListener {
+            startActivity(
+                Intent(requireContext(), UsersActivity::class.java)
+            )
+        }
     }
+
+
 }

@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.kikidinda.hitrash.R
 import com.kikidinda.hitrash.ui.dashboard.DashboardAdmin
-import com.kikidinda.hitrash.ui.homeadmin.HomeAdmin
+import com.kikidinda.hitrash.ui.deposittrash.DepositTrashFragment
 import com.kikidinda.hitrash.ui.profile.ProfileFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -13,7 +13,7 @@ class MainAdminActivity : AppCompatActivity() {
 
     private val fragments = listOf(
         DashboardAdmin(),
-        HomeAdmin(),
+        DepositTrashFragment(),
         ProfileFragment()
     )
     lateinit var activeFragment : Fragment

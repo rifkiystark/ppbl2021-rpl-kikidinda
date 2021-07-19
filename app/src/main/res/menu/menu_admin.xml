@@ -8,8 +8,8 @@
         android:title="@string/beranda" />
     <item
         android:id="@+id/menuHome"
-        android:icon="@drawable/ic_round_home_24"
-        android:title="@string/beranda" />
+        android:icon="@drawable/ic_baseline_add_business_24"
+        android:title="@string/setor_sampah" />
    
     <item
         android:id="@+id/menuProfile"

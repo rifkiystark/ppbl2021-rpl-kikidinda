@@ -37,6 +37,22 @@ object Alert {
         return alert
     }
 
+    fun popup(alert: SweetAlertDialog, callback:(Boolean) -> Unit) : SweetAlertDialog{
+        alert.changeAlertType(SweetAlertDialog.WARNING_TYPE)
+        alert.titleText = "Perhatian"
+        alert.contentText = "Apakah ingin diubah menjadi warung?"
+        alert.showContentText(true)
+        alert.cancelText = "Tidak"
+        alert.confirmText = "Ya"
+        alert.showCancelButton(true)
+        alert.setCancelable(false)
+        alert.setConfirmClickListener { callback(true) }
+        alert.setCancelClickListener { callback(false) }
+        alert.show()
+
+        return alert
+    }
+
     fun hide(alert: SweetAlertDialog): SweetAlertDialog {
 
         alert.hide()

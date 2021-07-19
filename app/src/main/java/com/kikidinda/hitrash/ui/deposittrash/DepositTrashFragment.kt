@@ -1,4 +1,4 @@
-package com.kikidinda.hitrash.ui.homeadmin
+package com.kikidinda.hitrash.ui.deposittrash
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,9 +13,9 @@ import com.kikidinda.hitrash.R
 import com.kikidinda.hitrash.model.User
 import kotlinx.android.synthetic.main.fragment_home_admin.*
 
-class HomeAdmin : Fragment() {
+class DepositTrashFragment : Fragment() {
 
-    val viewModel: HomeAdminViewModel by viewModels()
+    val viewModel: DepositTrashViewModel by viewModels()
 
     var users: List<User> = listOf()
     override fun onCreateView(

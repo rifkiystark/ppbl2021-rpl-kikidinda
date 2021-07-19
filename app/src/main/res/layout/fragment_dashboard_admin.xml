@@ -114,6 +114,10 @@
             android:weightSum="1">
 
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btnUsers"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
