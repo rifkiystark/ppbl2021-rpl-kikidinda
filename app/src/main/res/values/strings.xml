@@ -37,8 +37,8 @@
     <string name="tukar_sampah">Tukar Sampah</string>
     <string name="tukar_coin">Tukar Coin</string>
     <string name="title_activity_history">HistoryActivity</string>
-    <string name="tab_text_1">Tukar Sampah</string>
-    <string name="tab_text_2">Tukar Poin</string>
+    <string name="tab_text_1">Pemasukan Poin</string>
+    <string name="tab_text_2">Pengeluaran Poin</string>
     <string name="name">Nama Pengguna</string>
     <string name="nomor_telepon">Nomor Telepon</string>
     <string name="verifikasi_nomor_telepon">Verifikasi Nomor Telepon</string>
@@ -49,7 +49,6 @@
     <string name="register">Register</string>
     <string name="rw">RW</string>
     <string name="rt">RT</string>
-    <string name="pembayaran">Pembayaran</string>
     <string name="edit_profile_warung">Edit Profile Warung</string>
     <string name="nama_toko">Nama Toko</string>
     <string name="jenis_toko">Jenis Toko</string>
@@ -57,4 +56,8 @@
     <string name="update_profile">Update Profile</string>
     <string name="setor_sampah">Setor Sampah</string>
     <string name="daftar_pengguna">Daftar Pengguna</string>
+    <string name="pembayaran">Pembayaran</string>
+    <string name="menjual">Menjual :</string>
+    <string name="total_poin">Total Poin</string>
+    <string name="bayar">Bayar</string>
 </resources>

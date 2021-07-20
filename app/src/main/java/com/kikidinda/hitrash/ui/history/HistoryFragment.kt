@@ -5,14 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kikidinda.hitrash.R
 import com.kikidinda.hitrash.adapter.HistoryAdapter
 import kotlinx.android.synthetic.main.fragment_history.*
 
 
-class HistoryFragment : Fragment() {
+class HistoryFragment(val mode: Int) : Fragment() {
 
+    val viewModel: HistoryViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -24,8 +26,13 @@ class HistoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val adapter = HistoryAdapter()
         rvHistory.layoutManager = LinearLayoutManager(requireContext())
-        rvHistory.adapter = HistoryAdapter()
+        rvHistory.adapter = adapter
+
+        viewModel.getTransactions(mode, requireContext()).observe(viewLifecycleOwner, {
+            adapter.updateTransactionData(it)
+        })
     }
 
 }

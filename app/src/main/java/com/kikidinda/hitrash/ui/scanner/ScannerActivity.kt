@@ -1,26 +1,52 @@
 package com.kikidinda.hitrash.ui.scanner
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import com.budiyev.android.codescanner.AutoFocusMode
-import com.budiyev.android.codescanner.CodeScanner
-import com.budiyev.android.codescanner.DecodeCallback
-import com.budiyev.android.codescanner.ErrorCallback
-import com.budiyev.android.codescanner.ScanMode
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import cn.pedant.SweetAlert.SweetAlertDialog
+import com.budiyev.android.codescanner.*
 import com.kikidinda.hitrash.R
+import com.kikidinda.hitrash.ui.payment.PaymentActivity
+import com.kikidinda.hitrash.utils.Alert
 import kotlinx.android.synthetic.main.activity_scanner.*
 
 class ScannerActivity : AppCompatActivity() {
     private lateinit var codeScanner: CodeScanner
 
+    val viewModel: ScannerViewModel by viewModels()
+    lateinit var alert : SweetAlertDialog
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scanner)
+
+        alert = SweetAlertDialog(this)
         initQRScanner()
+
+        setObserver()
     }
 
-    fun initQRScanner(){
+    private fun setObserver() {
+        viewModel.isLoading().observe(this, {
+            if(it){
+                alert = Alert.loading(alert)
+            }
+        })
+
+        viewModel.merchantObservable().observe(this, {
+            if(it == null){
+                alert = Alert.fail(alert, "Warung tidak ditemukan")
+            } else {
+                val intent = Intent(this, PaymentActivity::class.java)
+                intent.putExtra(PaymentActivity.EXTRA_MERCHANT, it)
+                startActivity(intent)
+                finish()
+            }
+        })
+    }
+
+    private fun initQRScanner() {
         codeScanner = CodeScanner(this, codeScannerViewScannerQRCode)
 
         codeScanner.camera = CodeScanner.CAMERA_BACK
@@ -34,13 +60,15 @@ class ScannerActivity : AppCompatActivity() {
         // Callbacks
         codeScanner.decodeCallback = DecodeCallback {
             runOnUiThread {
-                Toast.makeText(this, "Scan result: ${it.text}", Toast.LENGTH_LONG).show()
+                viewModel.getMerchant(it.text)
             }
         }
         codeScanner.errorCallback = ErrorCallback { // or ErrorCallback.SUPPRESS
             runOnUiThread {
-                Toast.makeText(this, "Camera initialization error: ${it.message}",
-                    Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    this, "Camera initialization error: ${it.message}",
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
 

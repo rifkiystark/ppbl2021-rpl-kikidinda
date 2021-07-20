@@ -32,4 +32,9 @@ object FirestoreAppInfo : FirestoreIntance() {
             .update("totalMerchant", FieldValue.increment(1.toLong()))
     }
 
+    fun addTrash(trash : Int) {
+        db.collection(CONST.FIRESTORE.APP_INFO).document(CONST.FIRESTORE.APP_INFO)
+            .update("totalSampah", FieldValue.increment(trash.toLong()))
+    }
+
 }

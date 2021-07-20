@@ -30,6 +30,9 @@
     <string name="update_profile">Update Profile</string>
     <string name="setor_sampah">Setor Sampah</string>
     <string name="daftar_pengguna">Daftar Pengguna</string>
+    <string name="menjual">Menjual :</string>
+    <string name="total_poin">Total Poin</string>
+    <string name="bayar">Bayar</string>
     <string-array name="rt">
         <item>RT</item>
         <item>01</item>

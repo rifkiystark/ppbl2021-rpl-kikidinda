@@ -84,6 +84,11 @@ object FirestoreUser : FirestoreIntance() {
             .update("poin", FieldValue.increment(poin.toLong()))
     }
 
+    fun subtractPoin(id: String, poin: Int) {
+        db.collection(CONST.FIRESTORE.USER).document(id)
+            .update("poin", FieldValue.increment((poin * -1).toLong()))
+    }
+
     fun makeMerchant(id: String, callback: (Boolean) -> Unit) {
         db.collection(CONST.FIRESTORE.USER).document(id).update("warung", true)
             .addOnSuccessListener {
@@ -151,6 +156,65 @@ object FirestoreUser : FirestoreIntance() {
             }
 
         return transactionsLiveData
+    }
+
+    fun getTransactionsIn(id: String): LiveData<List<Transaction>> {
+        val transactionsLiveData = MutableLiveData<List<Transaction>>()
+        db.collection(CONST.FIRESTORE.USER).document(id)
+            .collection(CONST.FIRESTORE.USER_TRANSACTIONS)
+            .whereGreaterThan("poin", 0)
+            .addSnapshotListener { value, _ ->
+                value?.toObjects(Transaction::class.java)
+                    ?.let {
+                        it.sortByDescending { tr ->
+                            tr.time
+                        }
+                        transactionsLiveData.postValue(it)
+                    }
+            }
+
+        return transactionsLiveData
+    }
+
+    fun getTransactionsOut(id: String): LiveData<List<Transaction>> {
+        val transactionsLiveData = MutableLiveData<List<Transaction>>()
+        db.collection(CONST.FIRESTORE.USER).document(id)
+            .collection(CONST.FIRESTORE.USER_TRANSACTIONS)
+            .whereLessThan("poin", 0)
+            .addSnapshotListener { value, _ ->
+                value?.toObjects(Transaction::class.java)
+                    ?.let {
+                        it.sortByDescending { tr ->
+                            tr.time
+                        }
+                        transactionsLiveData.postValue(it)
+                    }
+            }
+
+        return transactionsLiveData
+    }
+
+    fun addTransaction(transaction: Transaction, id: String) {
+        db.collection(CONST.FIRESTORE.USER).document(id)
+            .collection(CONST.FIRESTORE.USER_TRANSACTIONS)
+            .document()
+            .set(transaction)
+    }
+
+    fun getMerchantById(id: String, callback: (Boolean, Warung?) -> Unit) {
+        db.collection(CONST.FIRESTORE.USER).document(id).collection(CONST.FIRESTORE.USER_MERCHANT)
+            .document(id)
+            .get()
+            .addOnSuccessListener {
+                val merchant = it.toObject(Warung::class.java)
+                if (merchant == null) {
+                    callback(false, null)
+                } else {
+                    callback(true, merchant)
+                }
+            }.addOnFailureListener {
+                callback(false, null)
+            }
     }
 
 }

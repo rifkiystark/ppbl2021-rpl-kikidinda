@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.editprofilemerchant.EditProfileMerchantActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primaryGreen"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="18dp"
+            android:fontFamily="@font/medium"
+            android:text="@string/pembayaran"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/ivMerchant"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:background="@color/grayColor"
+        android:scaleType="centerCrop" />
+
+    <TextView
+        android:id="@+id/tvMerchantName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/bold"
+        android:textColor="@color/primaryGreen"
+        android:textSize="20sp"
+        tools:text="Toko SS" />
+
+    <TextView
+        android:id="@+id/tvMerchantType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="-16dp"
+        android:fontFamily="@font/regular"
+        android:textColor="@color/grayColor"
+        android:textSize="14sp"
+        tools:text="Toko Sembako" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/medium"
+        android:text="@string/menjual"
+        android:textColor="@color/grayColor"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tvMerchantGoods"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="-4dp"
+        android:fontFamily="@font/regular"
+        android:textColor="@color/grayColor"
+        android:textSize="14sp"
+        tools:text="Toko Sembako" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_margin="8dp"
+        android:background="#e5e5e5" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/bold"
+        android:text="@string/total_poin"
+        android:textColor="@color/grayColor"
+        android:textSize="16sp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilPoin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:gravity="center">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bold"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:inputType="number"
+            android:paddingTop="8dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnPay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:fontFamily="@font/bold"
+        android:paddingTop="8dp"
+        android:text="@string/bayar"
+        android:textAllCaps="false" />
+</LinearLayout>
