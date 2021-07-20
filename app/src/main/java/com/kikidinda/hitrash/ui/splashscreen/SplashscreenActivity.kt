@@ -4,7 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.messaging.FirebaseMessaging
 import com.kikidinda.hitrash.R
+import com.kikidinda.hitrash.repository.firestore.FirestoreUser
 import com.kikidinda.hitrash.repository.local.LocalStorage
 import com.kikidinda.hitrash.ui.MainActivity
 import com.kikidinda.hitrash.ui.MainAdminActivity
@@ -34,6 +36,9 @@ class SplashscreenActivity : AppCompatActivity() {
 
             else {
                 val user = LocalStorage.getUser(this)
+                FirebaseMessaging.getInstance().token.addOnSuccessListener {
+                    FirestoreUser.sendToken(user.id!!, it)
+                }
                 when {
                     user.admin -> {
                         startActivity(

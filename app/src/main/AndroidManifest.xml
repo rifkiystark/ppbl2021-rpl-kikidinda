@@ -15,7 +15,6 @@
         <activity android:name=".ui.payment.PaymentActivity"></activity>
         <activity android:name=".ui.users.UsersActivity" />
         <activity android:name=".ui.editprofilemerchant.EditProfileMerchantActivity" />
-        <activity android:name=".ui.qrcode.QRCodeActivity" />
         <activity android:name=".ui.MainMerchantActivity" />
         <activity android:name=".ui.scanner.ScannerActivity" />
         <activity android:name=".ui.MainAdminActivity" />
@@ -36,6 +35,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.MainActivity" />
+        <service
+            android:name=".service.NotificationService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

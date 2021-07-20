@@ -56,6 +56,17 @@ object FirestoreUser : FirestoreIntance() {
             }
     }
 
+    fun getUserByIdCallback(id: String, onResult: (String?, User?) -> Unit) {
+        db.collection(CONST.FIRESTORE.USER).document(id).get()
+            .addOnSuccessListener {
+                val user = it.toObject(User::class.java)
+                onResult("-", user)
+            }
+            .addOnFailureListener {
+                onResult(it.localizedMessage, null)
+            }
+    }
+
     fun getUserById(id: String): LiveData<User> {
         val userLiveData = MutableLiveData<User>()
         db.collection(CONST.FIRESTORE.USER).document(id).addSnapshotListener { value, _ ->
@@ -215,6 +226,10 @@ object FirestoreUser : FirestoreIntance() {
             }.addOnFailureListener {
                 callback(false, null)
             }
+    }
+
+    fun sendToken(id: String, token: String) {
+        db.collection(CONST.FIRESTORE.USER).document(id).update("token", token)
     }
 
 }

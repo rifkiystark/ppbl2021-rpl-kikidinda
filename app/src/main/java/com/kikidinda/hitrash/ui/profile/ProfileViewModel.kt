@@ -10,18 +10,11 @@ import com.kikidinda.hitrash.repository.local.LocalStorage
 class ProfileViewModel : ViewModel() {
     val profile = MutableLiveData<User>()
 
-    val isWarung = MutableLiveData<Boolean>().apply {
-        value = false
-    }
-
     fun profileBroadcaster(): LiveData<User> = profile
 
     fun getProfile(context: Context) {
         val user = LocalStorage.getUser(context)
         profile.value = user
 
-        if(user.warung){
-            isWarung.value = true
-        }
     }
 }

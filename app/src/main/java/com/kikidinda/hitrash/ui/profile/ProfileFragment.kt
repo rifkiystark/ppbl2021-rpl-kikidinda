@@ -34,7 +34,15 @@ class ProfileFragment : Fragment() {
         viewModel.profileBroadcaster().observe(viewLifecycleOwner, Observer {
             tvName.text = it.name
             tvEmail.text = it.email
+
+            if(it.warung){
+                wrapperBtnEditMerchant.visibility = View.VISIBLE
+            } else {
+                wrapperBtnEditMerchant.visibility = View.GONE
+
+            }
         })
+
 
         btnLogout.setOnClickListener {
             LocalStorage.signOut(requireActivity())

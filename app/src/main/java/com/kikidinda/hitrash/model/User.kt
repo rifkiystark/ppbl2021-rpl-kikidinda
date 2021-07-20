@@ -16,5 +16,6 @@ data class User(
     val rw: String = "",
     val poin: Int = 0,
     val admin: Boolean = false,
-    val warung: Boolean = false
+    val warung: Boolean = false,
+    val token : String = ""
 ) : Parcelable
