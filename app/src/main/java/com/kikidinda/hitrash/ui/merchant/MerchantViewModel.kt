@@ -6,5 +6,6 @@ import com.kikidinda.hitrash.model.Warung
 import com.kikidinda.hitrash.repository.firestore.FirestoreUser
 
 class MerchantViewModel : ViewModel() {
-    fun getMerchant() : LiveData<ArrayList<Warung>> = FirestoreUser.getMerchants()
+    val firestoreUser = FirestoreUser()
+    fun getMerchant() : LiveData<ArrayList<Warung>> = firestoreUser.getMerchants()
 }

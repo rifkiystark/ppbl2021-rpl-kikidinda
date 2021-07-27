@@ -14,20 +14,22 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class UsersViewModel : ViewModel() {
+    val firestoreUser = FirestoreUser()
+    val firestoreAppInfo = FirestoreAppInfo()
     val users = MutableLiveData<List<User>>()
     fun userObservable(): LiveData<List<User>> = users
     fun getUsers() {
-        FirestoreUser.getUser {
+        firestoreUser.getUser {
             users.value = it
         }
     }
 
     fun makeMerchant(id: String) {
-        FirestoreUser.makeMerchant(id) {
-            FirestoreAppInfo.addWarung()
+        firestoreUser.makeMerchant(id) {
+            firestoreAppInfo.addWarung()
             getUsers()
 
-            FirestoreUser.getUserByIdCallback(id) { msg, user2 ->
+            firestoreUser.getUserByIdCallback(id) { msg, user2 ->
                 if (user2 != null) {
                     if (user2.token != "") {
                         val notification = Notification(

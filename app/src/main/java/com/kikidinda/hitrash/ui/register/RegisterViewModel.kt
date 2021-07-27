@@ -7,6 +7,7 @@ import com.kikidinda.hitrash.repository.firestore.FirestoreUser
 
 class RegisterViewModel : ViewModel() {
 
+    val firestoreUser = FirestoreUser()
     val loading = MutableLiveData<Boolean>().apply {
         value = false
     }
@@ -25,9 +26,9 @@ class RegisterViewModel : ViewModel() {
 
     fun register(phoneNumber: String, email: String) {
         loading.value = true
-        FirestoreUser.getUserByPhoneNumber(phoneNumber) { message, result ->
+        firestoreUser.getUserByPhoneNumber(phoneNumber) { message, result ->
             if (result == null && message == "Nomor Telepon Belum Terdaftar") {
-                FirestoreUser.getUserByEmail(email) { message2, result2 ->
+                firestoreUser.getUserByEmail(email) { message2, result2 ->
                     if (result2 == null && message2 == "Email Belum Terdaftar") {
                         successRegister.value = true
                     } else {

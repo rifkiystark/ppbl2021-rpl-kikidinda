@@ -33,13 +33,13 @@ class NotificationService : FirebaseMessagingService() {
     override fun onNewToken(token: String) {
         super.onNewToken(token)
         val id = LocalStorage.getUser(applicationContext).id
-        FirestoreUser.sendToken(id!!, token)
+        FirestoreUser().sendToken(id!!, token)
     }
 
     private fun sendNotif(message: String) {
         val mNotificationManager =
             getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        val largeIcon = BitmapFactory.decodeResource(resources, R.drawable.ic_launcher_foreground)
+        val largeIcon = BitmapFactory.decodeResource(resources, R.mipmap.ic_launcher_foreground)
         val intent = Intent(this, SplashscreenActivity::class.java)
         val pendingIntent = PendingIntent.getActivity(
             this,
@@ -52,7 +52,7 @@ class NotificationService : FirebaseMessagingService() {
         val mBuilder = NotificationCompat.Builder(this, CHANNEL_ID)
             .setContentTitle("Informasi")
             .setContentText(message)
-            .setSmallIcon(R.drawable.ic_launcher_foreground)
+            .setSmallIcon(R.mipmap.ic_launcher_foreground)
             .setContentIntent(pendingIntent)
             .setLargeIcon(largeIcon)
             .setAutoCancel(true)

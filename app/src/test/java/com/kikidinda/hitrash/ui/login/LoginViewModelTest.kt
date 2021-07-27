@@ -1,37 +1,54 @@
 package com.kikidinda.hitrash.ui.login
 
 import android.content.Context
+import android.util.Log
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import junit.framework.Assert.assertEquals
+import androidx.lifecycle.Observer
+import com.kikidinda.hitrash.model.User
+import com.kikidinda.hitrash.repository.firestore.FirestoreUser
+import io.mockk.impl.annotations.MockK
+import io.mockk.mockk
+import io.mockk.spyk
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
+
+import org.junit.Assert.*
+import org.junit.Rule
 import org.junit.runner.RunWith
 import org.mockito.Mock
+import org.mockito.Mockito
+import org.mockito.Mockito.`when`
 import org.mockito.junit.MockitoJUnitRunner
+import org.mockito.kotlin.*
 
 @RunWith(MockitoJUnitRunner::class)
 class LoginViewModelTest {
 
-    @Mock
-    private lateinit var context: Context
+    private val userTestData = User(email = "ananda.rifkiy32@gmail.com", password = "wakwaw123")
 
-    @Mock
-    private lateinit var viewModel : LoginViewModel
+    private val viewModel = spy<LoginViewModel>()
+
+    private val repo = mock<FirestoreUser>()
+
+    private var observer = mock<Observer<User>>()
+    private var context = mock<Context>()
+
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     @Before
     fun setUp() {
-        //viewModel = LoginViewModel()
+
     }
 
     @Test
     fun login() {
-        viewModel.login("ananda.rifkiy32@gmail.com", "kiki", context)
-        Thread.sleep(10000)
-        val user = viewModel.successBroadcaster().value
 
-        assertEquals(user?.email, "ananda.rifkiy32@gmail.com")
+        viewModel.successBroadcaster().observeForever(observer)
+        viewModel.login(eq("ananda.rifkiy32@gmail.com"), eq("wakwaw123"), eq(context))
+        // Assert.assertEquals(userTestData, viewModel.message.value)
+
+        verify(observer).onChanged(userTestData)
+       // assertEquals(userTestData, viewModel.successBroadcaster().value)
     }
 }

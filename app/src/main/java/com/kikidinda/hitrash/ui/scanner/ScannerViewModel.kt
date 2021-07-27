@@ -8,6 +8,7 @@ import com.kikidinda.hitrash.repository.firestore.FirestoreUser
 
 class ScannerViewModel : ViewModel() {
 
+    val firestoreUser = FirestoreUser()
     private val loading = MutableLiveData<Boolean>()
 
     fun isLoading() : LiveData<Boolean> = loading
@@ -21,7 +22,7 @@ class ScannerViewModel : ViewModel() {
         if(id.contains("/")){
             this.merchant.value = null
         } else {
-            FirestoreUser.getMerchantById(id) { status, merchant ->
+            firestoreUser.getMerchantById(id) { status, merchant ->
                 this.merchant.value = merchant
             }
         }

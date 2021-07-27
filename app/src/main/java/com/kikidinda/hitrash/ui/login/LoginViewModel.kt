@@ -9,13 +9,13 @@ import com.kikidinda.hitrash.repository.firestore.FirestoreUser
 import com.kikidinda.hitrash.repository.local.LocalStorage
 
 class LoginViewModel : ViewModel() {
-    val loading = MutableLiveData<Boolean>().apply {
-        value = false
-    }
+    private val repo = FirestoreUser()
+
+    val loading = MutableLiveData<Boolean>()
 
     val message = MutableLiveData<String>()
 
-    val successLogin = MutableLiveData<User>()
+    private val successLogin = MutableLiveData<User>()
 
     fun loadingBroadcaster() : LiveData<Boolean> = loading
 
@@ -25,7 +25,7 @@ class LoginViewModel : ViewModel() {
 
     fun login(email: String, password: String, context: Context) {
         loading.value = true
-        FirestoreUser.getUserByEmail(email) { msg, user ->
+        repo.getUserByEmail(email) { _, user ->
             when {
                 user == null -> {
                     message.value = "Email salah"

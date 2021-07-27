@@ -6,7 +6,7 @@ import com.google.firebase.firestore.FieldValue
 import com.kikidinda.hitrash.model.AppInfo
 import com.kikidinda.hitrash.utils.CONST
 
-object FirestoreAppInfo : FirestoreIntance() {
+class FirestoreAppInfo : FirestoreIntance() {
     fun getAppInfo() : LiveData<AppInfo> {
         val appInfoLiveData = MutableLiveData<AppInfo>()
         db.collection(CONST.FIRESTORE.APP_INFO).document(CONST.FIRESTORE.APP_INFO).addSnapshotListener { value, error ->

@@ -10,7 +10,7 @@ import com.kikidinda.hitrash.model.User
 import com.kikidinda.hitrash.model.Warung
 import com.kikidinda.hitrash.utils.CONST
 
-object FirestoreUser : FirestoreIntance() {
+class FirestoreUser : FirestoreIntance() {
     fun getUserByPhoneNumber(phoneNumber: String, onResult: (String?, User?) -> Unit) {
         db.collection(CONST.FIRESTORE.USER).whereEqualTo("phoneNumber", phoneNumber).get()
             .addOnSuccessListener {
@@ -83,7 +83,7 @@ object FirestoreUser : FirestoreIntance() {
         db.collection(CONST.FIRESTORE.USER).document(id).set(user)
             .addOnSuccessListener {
                 onResult("Register User Berhasil", true)
-                FirestoreAppInfo.addUser()
+                FirestoreAppInfo().addUser()
             }
             .addOnFailureListener {
                 onResult(it.localizedMessage, false)

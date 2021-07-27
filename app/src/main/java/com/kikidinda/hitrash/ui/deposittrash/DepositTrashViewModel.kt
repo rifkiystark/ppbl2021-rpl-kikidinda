@@ -17,8 +17,11 @@ import retrofit2.Response
 class DepositTrashViewModel : ViewModel() {
     val users = MutableLiveData<List<User>>()
 
+    val repositoryUser = FirestoreUser()
+    val repositoryAppInfo = FirestoreAppInfo()
+
     init {
-        FirestoreUser.getUser {
+        repositoryUser.getUser {
             users.value = it
         }
     }
@@ -27,11 +30,11 @@ class DepositTrashViewModel : ViewModel() {
 
     fun addPoin(user: User, poin: Int) {
         val transaction = Transaction(poin = poin)
-        FirestoreUser.addPoin(user.id!!, poin)
-        FirestoreUser.addTransaction(transaction, user.id!!)
-        FirestoreAppInfo.addTrash(poin)
+        repositoryUser.addPoin(user.id!!, poin)
+        repositoryUser.addTransaction(transaction, user.id!!)
+        repositoryAppInfo.addTrash(poin)
 
-        FirestoreUser.getUserByEmail(user.email) { msg, user2 ->
+        repositoryUser.getUserByEmail(user.email) { msg, user2 ->
             if (user2 != null) {
                 if (user2.token != "") {
                     val notification = Notification(

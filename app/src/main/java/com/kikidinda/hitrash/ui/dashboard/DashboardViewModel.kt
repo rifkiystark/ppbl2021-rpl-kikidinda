@@ -6,5 +6,6 @@ import com.kikidinda.hitrash.model.AppInfo
 import com.kikidinda.hitrash.repository.firestore.FirestoreAppInfo
 
 class DashboardViewModel : ViewModel() {
-    fun getInfo() : LiveData<AppInfo> = FirestoreAppInfo.getAppInfo()
+    val firestoreAppInfo = FirestoreAppInfo()
+    fun getInfo() : LiveData<AppInfo> = firestoreAppInfo.getAppInfo()
 }

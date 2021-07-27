@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HiTrash</string>
+    <string name="app_name">MyTrash</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="masuk">MASUK</string>
@@ -60,4 +60,6 @@
     <string name="menjual">Menjual :</string>
     <string name="total_poin">Total Poin</string>
     <string name="bayar">Bayar</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
 </resources>

@@ -17,13 +17,14 @@ import retrofit2.Response
 
 class PaymentViewModel : ViewModel() {
 
+    val firestoreUser = FirestoreUser()
     private val message = MutableLiveData<String>()
 
     fun messageObservable(): LiveData<String> = message
 
     fun pay(poin: Int, id: String, context: Context) {
         val user = LocalStorage.getUser(context)
-        FirestoreUser.getUserByEmail(user.email) { msg, myUser ->
+        firestoreUser.getUserByEmail(user.email) { msg, myUser ->
             Log.d("TAG", "pay: $myUser")
             if (myUser == null) {
                 message.value = PaymentActivity.MSG_FAILED
@@ -31,15 +32,15 @@ class PaymentViewModel : ViewModel() {
                 if (myUser.poin < poin) {
                     message.value = PaymentActivity.MSG_NO_POIN
                 } else {
-                    FirestoreUser.addPoin(id, poin)
-                    FirestoreUser.subtractPoin(user.id!!, poin)
+                    firestoreUser.addPoin(id, poin)
+                    firestoreUser.subtractPoin(user.id!!, poin)
                     val transactionIn = Transaction(poin = poin)
                     val transactionOut = Transaction(poin = (poin * -1))
-                    FirestoreUser.addTransaction(transactionIn, id)
-                    FirestoreUser.addTransaction(transactionOut, user.id!!)
+                    firestoreUser.addTransaction(transactionIn, id)
+                    firestoreUser.addTransaction(transactionOut, user.id!!)
                     message.value = PaymentActivity.MSG_SUCCESS
 
-                    FirestoreUser.getUserByIdCallback(id) { msg, user2 ->
+                    firestoreUser.getUserByIdCallback(id) { msg, user2 ->
                         if(user2 != null){
                             if(user2.token != ""){
                                 val notification = Notification(

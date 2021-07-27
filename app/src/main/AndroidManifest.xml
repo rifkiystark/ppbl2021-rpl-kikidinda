@@ -12,7 +12,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HiTrash">
-        <activity android:name=".ui.payment.PaymentActivity"></activity>
+        <receiver android:name=".widget.MyWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/my_widget_info" />
+        </receiver>
+
+        <activity android:name=".ui.payment.PaymentActivity" />
         <activity android:name=".ui.users.UsersActivity" />
         <activity android:name=".ui.editprofilemerchant.EditProfileMerchantActivity" />
         <activity android:name=".ui.MainMerchantActivity" />
@@ -35,6 +45,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.MainActivity" />
+
         <service
             android:name=".service.NotificationService"
             android:exported="false">

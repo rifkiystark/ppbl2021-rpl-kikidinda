@@ -18,6 +18,8 @@ class OTPViewModel : ViewModel() {
         const val TAG = "OTPViewModel"
     }
 
+    val firestoreUser = FirestoreUser()
+
     val loading = MutableLiveData<Boolean>().apply {
         value = false
     }
@@ -82,7 +84,7 @@ class OTPViewModel : ViewModel() {
                     .addOnCompleteListener {
                         if (it.isSuccessful) {
                             val id = it.result?.user?.uid!!
-                            FirestoreUser.registerNewUser(id, user) { message, status ->
+                            firestoreUser.registerNewUser(id, user) { message, status ->
                                 if (status) {
                                     user.id = id
                                     successRegister.value = user

@@ -9,9 +9,10 @@ import com.kikidinda.hitrash.repository.firestore.FirestoreUser
 import com.kikidinda.hitrash.repository.local.LocalStorage
 
 class HomeViewModel : ViewModel() {
+    val firestoreUser = FirestoreUser()
     fun transaction(context: Context): LiveData<List<Transaction>> =
-        FirestoreUser.getTransactions(LocalStorage.getUser(context).id!!)
+        firestoreUser.getTransactions(LocalStorage.getUser(context).id!!)
 
     fun profile(context: Context): LiveData<User> =
-        FirestoreUser.getUserById(LocalStorage.getUser(context).id!!)
+        firestoreUser.getUserById(LocalStorage.getUser(context).id!!)
 }

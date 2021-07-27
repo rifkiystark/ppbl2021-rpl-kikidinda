@@ -12,9 +12,10 @@ import com.kikidinda.hitrash.repository.storage.Storage
 
 class EditProfileMerchantViewModel : ViewModel() {
 
+    val firestoreUser = FirestoreUser()
     fun getMerchant(context: Context) {
         val user = LocalStorage.getUser(context)
-        FirestoreUser.getMerchant(user.id!!) { status, merchant ->
+        firestoreUser.getMerchant(user.id!!) { status, merchant ->
             this.merchant = merchant
             merchantObservable.value = this.merchant
             Log.d("TAG", "getMerchant: $status, $merchant")
@@ -45,7 +46,7 @@ class EditProfileMerchantViewModel : ViewModel() {
                     merchant!!.img = url
                 }
                 merchantObservable.value = merchant
-                FirestoreUser.updateMerchant(merchant!!, user.id!!) { status, merchant ->
+                firestoreUser.updateMerchant(merchant!!, user.id!!) { status, merchant ->
 
                 }
             }
@@ -69,7 +70,7 @@ class EditProfileMerchantViewModel : ViewModel() {
             merchant!!.merchantType = merchantType
         }
         merchantObservable.value = merchant
-        FirestoreUser.updateMerchant(merchant!!, user.id!!) { status, merchant ->
+        firestoreUser.updateMerchant(merchant!!, user.id!!) { status, merchant ->
             isLoading.value = false
         }
     }

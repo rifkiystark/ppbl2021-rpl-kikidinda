@@ -15,9 +15,12 @@ import com.kikidinda.hitrash.ui.login.LoginActivity
 import com.kikidinda.hitrash.ui.onboarding.OnboardingActivity
 
 class SplashscreenActivity : AppCompatActivity() {
+    val firestoreUser = FirestoreUser()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splashscreen)
+
+
 
         Handler(mainLooper).postDelayed({
             if(!LocalStorage.isLogin(this)){
@@ -37,7 +40,7 @@ class SplashscreenActivity : AppCompatActivity() {
             else {
                 val user = LocalStorage.getUser(this)
                 FirebaseMessaging.getInstance().token.addOnSuccessListener {
-                    FirestoreUser.sendToken(user.id!!, it)
+                    firestoreUser.sendToken(user.id!!, it)
                 }
                 when {
                     user.admin -> {
