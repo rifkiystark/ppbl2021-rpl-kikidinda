@@ -27,11 +27,14 @@ object Alert {
         return alert
     }
 
-    fun success(alert: SweetAlertDialog, message: String = ""): SweetAlertDialog {
+    fun success(alert: SweetAlertDialog, message: String = "", callback: (Boolean) -> Unit): SweetAlertDialog {
         alert.changeAlertType(SweetAlertDialog.SUCCESS_TYPE)
         alert.titleText = "Berhasil"
         alert.contentText = message
         alert.showContentText(true)
+        alert.setConfirmClickListener {
+            it.hide()
+        }
         alert.show()
 
         return alert
